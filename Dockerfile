@@ -11,4 +11,4 @@ COPY . .
 RUN pip install -r requirements.txt
 
 # Comando para iniciar o servidor web com SSL/TLS
-CMD [ "python", "manage.py", "runsslserver", "0.0.0.0:443", "--certificate", "/path/to/certificate.crt", "--key", "/path/to/private.key" ]
+CMD [ "python", "manage.py", "runsslserver", "0.0.0.0:443", "--certificate", "/etc/ssl/certs/certificado.crt", "--key", "/etc/ssl/private/chave_privada.key" ]

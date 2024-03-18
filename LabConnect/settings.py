@@ -29,8 +29,8 @@ ALLOWED_HOSTS = ['*']
 
 # Configurações do servidor SSL
 
-SSL_CERTIFICATE = '/path/to/your/certificate.crt'
-SSL_KEY = '/path/to/your/private.key'
+SSL_CERTIFICATE = '/etc/ssl/certs/certificado.crt'
+SSL_KEY = '/etc/ssl/private/chave_privada.key'
 
 # Application definition
 
