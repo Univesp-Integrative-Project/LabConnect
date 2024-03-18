@@ -25,8 +25,12 @@ SECRET_KEY = 'django-insecure-1rc1#ey@$-f1*5c2ua$581*=@z)n=mgn5mzlv-k#bg%_e)6flg
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
+# Configurações do servidor SSL
+
+SSL_CERTIFICATE = '/path/to/your/certificate.crt'
+SSL_KEY = '/path/to/your/private.key'
 
 # Application definition
 
@@ -37,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'sslserver', # serviço django para páginas https
 
     'Agenda',
 ]
@@ -77,10 +83,15 @@ WSGI_APPLICATION = 'LabConnect.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'labconnect',
+        'USER': 'admin',
+        'PASSWORD': 'admin',
+        'HOST': 'db',  # Nome do serviço Docker Compose para o banco de dados
+        'PORT': '3306',  # Porta padrão do MySQL
     }
 }
+
 
 
 # Password validation

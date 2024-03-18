@@ -1,3 +1,8 @@
+# Personal archive
+MyPassKey.pem
+settings_dev.py
+runserver.bat
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
