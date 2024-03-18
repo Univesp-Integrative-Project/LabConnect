@@ -1,4 +1,4 @@
-name: CI
+name: Deploy EC2
 
 on:
   push:
@@ -6,20 +6,18 @@ on:
       - main
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout do Código
+        uses: actions/checkout@v2
 
-    - name: Build and run tests
-      run: |
-        cd LabConnect/
-        docker-compose build
-        docker-compose run web python manage.py test
-    
-    - name: Deploy
-      run: |
-        cd LabConnect/
-        docker-compose up -d
+      - name: SSH para a Máquina EC2
+        uses: appleboy/ssh-action@master
+        with:
+          host: 18.116.89.141
+          username: ubuntu
+          key: ${{ secrets.PRIVATE_KEY }}
+          script: |
+            echo hello world > hello.txt
