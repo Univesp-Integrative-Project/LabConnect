@@ -5,4 +5,4 @@ cd LabConnect/
 git pull origin main
 
 # Construir e iniciar os contêineres Docker
-docker-compose up -d
+sudo docker-compose up -d
