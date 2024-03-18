@@ -20,5 +20,6 @@ jobs:
           username: ubuntu
           key: ${{ secrets.PRIVATE_KEY }}
           script: |
+            cd LabConnect
             chmod +x deploy.sh
             ./deploy.sh

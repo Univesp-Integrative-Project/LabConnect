@@ -1,8 +1,8 @@
-# Clonar o repositório da aplicação Django
-git clone https://github.com/Univesp-Integrative-Project/LabConnect.git
+# Entrar na pasta do projeto
+cd LabConnect/
 
-# Entrar no diretório da aplicação Django
-cd LabConnect
+# Atualizar repositório
+git pull origin main
 
 # Construir e iniciar os contêineres Docker
 docker-compose up -d
