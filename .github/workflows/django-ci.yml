@@ -15,5 +15,11 @@ jobs:
 
     - name: Build and run tests
       run: |
+        cd LabConnect/
         docker-compose build
         docker-compose run web python manage.py test
+    
+    - name: Deploy
+      run: |
+        cd LabConnect/
+        docker-compose up -d
