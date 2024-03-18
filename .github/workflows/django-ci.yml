@@ -20,4 +20,5 @@ jobs:
           username: ubuntu
           key: ${{ secrets.PRIVATE_KEY }}
           script: |
-            echo hello world > hello.txt
+            chmod +x deploy.sh
+            ./deploy.sh
