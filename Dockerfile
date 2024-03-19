@@ -22,11 +22,14 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copiando o código da aplicação para o contêiner
 COPY . /app/
 
+# Criando diretório SSL
+RUN mkdir -p /etc/nginx/ssl/
+
 # Gerando certificado SSL
-RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/ssl/nginx-selfsigned.key -out /etc/nginx/ssl/nginx-selfsigned.crt -subj "/C=US/ST=State/L=City/O=Organization/CN=example.com"
+RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/ssl/nginx-selfsigned.key -out /etc/nginx/ssl/nginx-selfsigned.crt -subj "/C=BR/ST=Sao Paulo/L=Sao Paulo/O=Univesp/CN=2106743@aluno.univesp.br"
 
 # Configurando o NGINX
-COPY nginx/nginx.conf /etc/nginx/nginx.conf
+COPY nginx.conf /etc/nginx/nginx.conf
 RUN rm /etc/nginx/sites-enabled/default
 
 # Porta de exposição
