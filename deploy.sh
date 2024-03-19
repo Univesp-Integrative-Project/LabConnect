@@ -2,7 +2,9 @@
 cd LabConnect/
 
 # Atualizar repositório
-git pull origin main
+git fetch --all
+sudo git clean -fdx
+git reset --hard origin
 
 # Construir e iniciar os contêineres Docker
 sudo docker-compose up -d
