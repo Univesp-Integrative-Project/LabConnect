@@ -1,15 +1,13 @@
 version: '3'
 
 services:
-  web:
+  django:
     build: .
-    command: python manage.py runsslserver 0.0.0.0:443 --certificate /app/certificado.crt --key /app/chave_privada.key
+    command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/app
-      - /etc/ssl/certs/certificado.crt:/app/certificado.crt
-      - /etc/ssl/private/chave_privada.key:/app/chave_privada.key
     ports:
-      - "443:443"
+      - "8000:8000"
     depends_on:
       - db
 
@@ -22,6 +20,16 @@ services:
       MYSQL_ROOT_PASSWORD: rootadmin
     volumes:
       - mysql_data:/var/lib/mysql
+  
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - django
 
 volumes:
   mysql_data:

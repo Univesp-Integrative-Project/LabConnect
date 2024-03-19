@@ -27,11 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-# Configurações do servidor SSL
-
-SSL_CERTIFICATE = '/etc/ssl/certs/certificado.crt'
-SSL_KEY = '/etc/ssl/private/chave_privada.key'
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -41,8 +36,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    'sslserver', # serviço django para páginas https
 
     'Agenda',
 ]
