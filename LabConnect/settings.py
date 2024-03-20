@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-CORS_ALLOWED_ORIGINS = ['18.116.89.141']
+CORS_ALLOWED_ORIGINS = ['https://18.116.89.141']
 
 # Application definition
 
