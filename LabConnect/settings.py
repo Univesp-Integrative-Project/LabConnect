@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'Agenda',
-    "django_bootstrap5",
 ]
 
 MIDDLEWARE = [
