@@ -16,9 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from Agenda.views import home
+from Agenda.views import login_user, submit_login, logout_user, home
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home, name='home')
+    path('home', home, name='home'),
+    path('', login_user, name='login_user'),
+    path('login/submit', submit_login, name='submit_login'),
+    path('logout', logout_user, name='logout_user'),
 ]

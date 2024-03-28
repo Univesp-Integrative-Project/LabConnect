@@ -1,12 +1,57 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <title>LabConnect</title>
 </head>
+
 <body>
-    <h1>LabConnect</h1>
-    <img src="Agenda\static\logo.jpeg" alt="LabConnect logo">
+
+    <div class="w3-container">
+        <p></p>
+
+        <div class="w3-bar w3-black">
+            <button class="w3-bar-item w3-button tablink w3-red" onclick="openTab(event,'Agenda')">Agenda</button>
+            <button class="w3-bar-item w3-button tablink" onclick="openTab(event,'Agendamento')">Agendamento</button>
+            <button class="w3-bar-item w3-button w3-right"><a href="/logout">Sair</a></button>
+            <button class="w3-bar-item w3-button w3-right"><a href="/admin">Painel Adiministrativo</a></button>
+        </div>
+
+        <div id="Agenda" class="w3-container w3-border city">
+            <h2>Agenda</h2>
+            <p>Agendamentos Realizados para ...</p>
+        </div>
+
+        <div id="Agendamento" class="w3-container w3-border city" style="display:none">
+            <h2>Agendamento</h2>
+            <p>Olá ...</p>
+            <form action="{% url 'home'}" class="w3-container" method="post">
+                {% csrf_token %}
+                
+                
+
+            </form>
+        </div>
+
+        <script>
+            function openTab(evt, TabName) {
+                var i, x, tablinks;
+                x = document.getElementsByClassName("city");
+                for (i = 0; i < x.length; i++) {
+                    x[i].style.display = "none";
+                }
+                tablinks = document.getElementsByClassName("tablink");
+                for (i = 0; i < x.length; i++) {
+                    tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+                }
+                document.getElementById(TabName).style.display = "block";
+                evt.currentTarget.className += " w3-red";
+            }
+        </script>
+
 </body>
+
 </html>
