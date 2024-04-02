@@ -37,8 +37,10 @@ class Disciplina(models.Model):
 
 class Agenda(models.Model):
     """Clsse representando um agendamento realizado"""
-    HORARIO_CHOICES=[('1','12:00h às 13:00h'),
-                     ('2','13:00g às 14:00h')]
+    HORARIO_CHOICES=[('1','08:00h às 09:00h'),
+                     ('2','09:00h às 10:00h'),
+                     ('3','10:00h às 11:00h'),
+                     ('4','11:00h às 12:00h'),]
     escola = models.ForeignKey(Escola, on_delete=models.CASCADE)
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     laboratorio = models.ForeignKey(Laboratorio, on_delete=models.CASCADE)
@@ -50,3 +52,7 @@ class Agenda(models.Model):
 
     def __str__(self):
         return f"Agendamento para {self.disciplina} na data {self.data_agendada} às {self.horario_agendado}"
+    
+    class Meta:
+        # Definindo que a combinação de laboratório, data_agendada e horario_agendado deva ser única
+        unique_together = ('laboratorio', 'data_agendada', 'horario_agendado')

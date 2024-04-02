@@ -1,0 +1,9 @@
+{% extends "model.html" %}
+
+{% block content %}
+<form action="{% url 'agendamento' %}" class="w3-container" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Agendar</button>
+</form>
+{% endblock %}

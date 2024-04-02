@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <img src="static\logo.jpeg" alt="LabConnect logo" style="width:100%">
+    <!-- <img src="static\logo.jpeg" alt="LabConnect logo" style="width:100%"> -->
     <!-- Modal -->
     <div id="id01" class="w3-modal">
         <div class="w3-modal-content">
@@ -44,8 +44,7 @@
     <div id="popup" class="w3-modal">
         <div class="w3-modal-content w3-card-4 w3-animate-top">
             <header class="w3-container w3-red">
-                <span onclick="document.getElementById('popup').style.display='none'"
-                    class="w3-button w3-display-topright">&times;</span>
+                <span onclick="closePopup()" class="w3-button w3-display-topright">&times;</span>
                 <h2>Erro!</h2>
             </header>
             <div class="w3-container">
@@ -65,16 +64,16 @@
             document.getElementById('error-message').innerHTML = message;
             document.getElementById('popup').style.display = 'block';
         }
-    </script>
-
-    <!-- Chamada da função showErrorPopup -->
-    <script>
         // Verifica se há mensagens de erro e exibe o popup
         {% if messages %}
         window.onload = function () {
             showErrorPopup("{% for message in messages %}{{ message }}{% endfor %}");
         };
         {% endif %}
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+            location.reload(); // Recarrega a página
+        }
     </script>
 </body>
 

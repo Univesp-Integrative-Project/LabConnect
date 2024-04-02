@@ -1,0 +1,33 @@
+{% extends "model.html" %}
+
+{% block content %}
+<p>
+   Olá {{ request.user }}, esta é sua lista de agendamentos:
+</p>
+<table class="w3-table w3-striped w3-bordered">
+    <thead>
+        <tr class="w3-red">
+            <th>Escola</th>
+            <th>Professor</th>
+            <th>laboratório</th>
+            <th>Disciplina</th>
+            <th>Turma</th>
+            <th>Data Agendada</th>
+            <th>Horario Agendado</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in agenda %}
+        <tr>
+            <td>{{ item.escola }}</td>
+            <td>{{ item.usuario }}</td>
+            <td>{{ item.laboratorio }}</td>
+            <td>{{ item.disciplina }}</td>
+            <td>{{ item.turma }}</td>
+            <td>{{ item.data_agendada }}</td>
+            <td>{{ item.get_horario_agendado_display }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

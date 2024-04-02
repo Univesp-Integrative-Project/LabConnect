@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <title>LabConnect</title>
+</head>
+
+<body>
+    <div class="w3-bar w3-black">
+        <a href="/" class="w3-bar-item w3-button">Agenda</a>
+        <a href="/agendamento" class="w3-bar-item w3-button">Agendamento</a>
+        <a href="/admin" class="w3-bar-item w3-button">Painel Agministrativo</a>
+        <a href="/logout" class="w3-bar-item w3-button">Sair</a>
+    </div>
+    <div>
+        <p></p>
+        {% block content %} {% endblock %}
+    </div>
+    <div class="w3-display-middle w3-green w3-round">
+        {% for message in messages %}
+        {{ message }}
+        {% endfor %}
+    </div>
+</body>
+
+</html>
