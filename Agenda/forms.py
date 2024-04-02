@@ -6,7 +6,7 @@ class AgendaModelForm(forms.ModelForm):
 
     class Meta:
         model = Agenda
-        fields = ['escola', 'usuario', 'laboratorio',
+        fields = ['escola', 'laboratorio',
                   'disciplina', 'turma', 'data_agendada', 'horario_agendado']
         widgets = {
             'data_agendada': DateInput(attrs={'type': 'date'})

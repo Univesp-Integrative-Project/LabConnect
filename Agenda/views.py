@@ -27,8 +27,9 @@ def submit_login(request):
 
 def agenda(request):
     if str(request.user) != 'AnonymousUser':
+        user = request.user
         context = {
-            'agenda': Agenda.objects.all()
+            'agenda': Agenda.objects.filter(usuario=user)
         }
         return render(request, 'agenda.html', context)
     else:
@@ -39,7 +40,11 @@ def agendamento(request):
         if str(request.method) == 'POST':
             form = AgendaModelForm(request.POST)
             if form.is_valid():
-                form.save()
+                agenda = form.save(commit=False) # Evita salvar no banco antes de modificar
+                agenda.usuario = request.user  # Define o usuário com base no request.user
+                agenda.save()
+                messages.success(request, 'Agendamento realizado.')
+                form = AgendaModelForm() # Comando para limpar o formulário
 
                 messages.success(request, 'Agendamento realizado.')
                 form = AgendaModelForm() # Comando para limpar o formulário
