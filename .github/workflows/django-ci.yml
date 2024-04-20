@@ -16,7 +16,7 @@ jobs:
       - name: SSH para a Máquina EC2
         uses: appleboy/ssh-action@master
         with:
-          host: 3.137.174.9
+          host: 3.137.211.202
           username: ubuntu
           key: ${{ secrets.PRIVATE_KEY }}
           script: |
