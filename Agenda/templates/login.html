@@ -1,80 +1,69 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="pt-br">
+{% extends "model.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <title>LabConnect</title>
-</head>
-
-<body>
-    <!-- <img src="static\logo.jpeg" alt="LabConnect logo" style="width:100%"> -->
-    <!-- Modal -->
-    <div id="id01" class="w3-modal">
-        <div class="w3-modal-content">
-            <div class="w3-container w3-black">
-                <!-- <span onclick="document.getElementById('id01').style.display='none'"
+{% block content %}
+<!-- <img src="static\logo.jpeg" alt="LabConnect logo" style="width:100%"> -->
+<!-- Modal -->
+<div id="id01" class="w3-modal">
+    <div class="w3-modal-content">
+        <div class="w3-container w3-black">
+            <!-- <span onclick="document.getElementById('id01').style.display='none'"
                     class="w3-button w3-display-topright">&times;</span> -->
-                </form>
-                <h3>Entre com usuário e senha para efetuar login</h2>
-            </div>
-            <div class="w3-container">
-                <form action="{% url 'submit_login' %}" method="post">
-                    {% csrf_token %}
-                    <p></p>
-                    <label class="w3-text-blue"><b>Usuário</b></label>
-                    <input class="w3-input w3-border" type="text" name="username">
-                    <p></p>
-                    <label class="w3-text-blue"><b>Senha</b></label>
-                    <input class="w3-input w3-border" type="password" name="password">
-                    <p></p>
-                    <button class="w3-btn w3-red">Entrar</button>
-                    <p></p>
-            </div>
-            <div class="w3-container w3-black">
+            </form>
+            <h3>Entre com usuário e senha para efetuar login</h2>
+        </div>
+        <div class="w3-container">
+            <form action="{% url 'submit_login' %}" method="post">
+                {% csrf_token %}
                 <p></p>
+                <label class="w3-text-blue"><b>Usuário</b></label>
+                <input class="w3-input w3-border" type="text" name="username">
                 <p></p>
-            </div>
+                <label class="w3-text-blue"><b>Senha</b></label>
+                <input class="w3-input w3-border" type="password" name="password">
+                <p></p>
+                <button class="w3-btn w3-red">Entrar</button>
+                <p></p>
+        </div>
+        <div class="w3-container w3-black">
+            <p></p>
+            <p></p>
         </div>
     </div>
+</div>
 
-    <!-- Popup -->
-    <div id="popup" class="w3-modal">
-        <div class="w3-modal-content w3-card-4 w3-animate-top">
-            <header class="w3-container w3-red">
-                <span onclick="closePopup()" class="w3-button w3-display-topright">&times;</span>
-                <h2>Erro!</h2>
-            </header>
-            <div class="w3-container">
-                <p id="error-message"></p>
-            </div>
+<!-- Popup -->
+<div id="popup" class="w3-modal">
+    <div class="w3-modal-content w3-card-4 w3-animate-top">
+        <header class="w3-container w3-red">
+            <span onclick="closePopup()" class="w3-button w3-display-topright">&times;</span>
+            <h2>Erro!</h2>
+        </header>
+        <div class="w3-container">
+            <p id="error-message"></p>
         </div>
     </div>
+</div>
 
-    <script>
-        // Função para abrir o modal quando a página carregar
-        window.onload = function () {
-            document.getElementById('id01').style.display = 'block';
-        };
+<script>
+    // Função para abrir o modal quando a página carregar
+    window.onload = function () {
+        document.getElementById('id01').style.display = 'block';
+    };
 
-        // Função para exibir o popup de erro
-        function showErrorPopup(message) {
-            document.getElementById('error-message').innerHTML = message;
-            document.getElementById('popup').style.display = 'block';
-        }
-        // Verifica se há mensagens de erro e exibe o popup
-        {% if messages %}
-        window.onload = function () {
-            showErrorPopup("{% for message in messages %}{{ message }}{% endfor %}");
-        };
-        {% endif %}
-        function closePopup() {
-            document.getElementById('popup').style.display = 'none';
-            location.reload(); // Recarrega a página
-        }
-    </script>
-</body>
-
-</html>
+    // Função para exibir o popup de erro
+    function showErrorPopup(message) {
+        document.getElementById('error-message').innerHTML = message;
+        document.getElementById('popup').style.display = 'block';
+    }
+    // Verifica se há mensagens de erro e exibe o popup
+    {% if messages %}
+    window.onload = function () {
+        showErrorPopup("{% for message in messages %}{{ message }}{% endfor %}");
+    };
+    {% endif %}
+    function closePopup() {
+        document.getElementById('popup').style.display = 'none';
+        location.reload(); // Recarrega a página
+    }
+</script>
+{% endblock %}

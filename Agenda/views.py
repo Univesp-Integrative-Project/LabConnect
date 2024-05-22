@@ -1,7 +1,10 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+import pandas as pd
+import plotly.express as px
 
 from .forms import AgendaModelForm
 from .models import Agenda
@@ -58,3 +61,24 @@ def agendamento(request):
         return render(request, 'agendamento.html', context)
     else:
         return redirect('login_user')
+
+@login_required
+def data_analysis(request):
+    # Extraindo dados do banco de dados
+    agenda_data = Agenda.objects.select_related('disciplina').values('disciplina__nome', 'data_agendada', 'horario_agendado')
+    df = pd.DataFrame(agenda_data)
+
+    # Contagem de agendamentos por disciplina
+    if not df.empty:
+        count_by_disciplina = df['disciplina__nome'].value_counts().reset_index()
+        count_by_disciplina.columns = ['Disciplina', 'Count']
+        fig = px.bar(count_by_disciplina, x='Disciplina', y='Count', title='Agendamentos por Disciplina')
+        graph = fig.to_html(full_html=False)
+    else:
+        graph = None
+
+    context = {
+        'graph': graph,
+    }
+
+    return render(request, 'data_analysis.html', context)

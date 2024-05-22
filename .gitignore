@@ -2,6 +2,7 @@
 MyPassKey.pem
 settings_dev.py
 runserver.bat
+management/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

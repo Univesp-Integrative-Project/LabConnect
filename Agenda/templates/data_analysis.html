@@ -1,0 +1,17 @@
+{% extends "model.html" %}
+
+{% block head %}
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+{% endblock %}
+
+{% block content %}
+    <h1 class="w3-center">Análise de Dados</h1>
+
+    <h2 class="w3-center">Gráfico de Agendamentos por Disciplina</h2>
+    {% if graph %}
+    <div>{{ graph|safe }}</div>
+    {% else %}
+    <p>Nenhum dado disponível para exibir o gráfico.</p>
+    {% endif %}
+
+{% endblock %}
